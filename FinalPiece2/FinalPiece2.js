@@ -9,11 +9,21 @@ var bulletStat = {
 var targetRem = [];
 var circReset = [];
 var circRand = [];
-let a = 100;
+let a = 72;
 var ship;
+var evilship;
+var explosionGreen;
+var asteroidField;
+var m = 0;
+var n = -600;
+var o = -1200;
+
 
 function preLoad(){
     ship = loadImage('images/pixil-frame-0 (2).png');
+    evilship = loadImage('evilship.png');
+    explosionGreen = loadImage('explosiongreen.png');
+    asteroidField = loadImage('asteroid.png');
 }
 
 
@@ -23,20 +33,19 @@ function setup() {
     noStroke();
     circSetup();
     createCanvas(600, 600);
+
 }
 
 function draw() {
-
+    
     background(0, 80);
-    if(circReset == false){
-        a = 100;
-    }
-    if(circReset == true){
-        a = 0;
-    }
-    ellipse(targetRem[0].circX, targetRem[0].circY, a);
+    scrollingBackground();
+    tint(255, 255);
+    ellipse(targetRem[0].circX, targetRem[0].circY, 0);
     tank();
     bullet();
+    //crash();
+    image(evilship, targetRem[0].circX-67, targetRem[0].circY-a, evilship.width/2.2, evilship.height/2.2);
 }
 
 function tank(){
@@ -58,9 +67,11 @@ function bullet(){
         bulletTrav[i].y = bulletTrav[i].y + bulletTrav[i].speed;
             if(dist(bulletTrav[i].x, bulletTrav[i].y, targetRem[0].circX, targetRem[0].circY) < 50){
                 console.log("hit");
-                a = 0;
+                //a = 9000;
                 b = true;
                 circSetup();
+                crash();
+                //victory();
                 
             }else{
                 //console.log("miss");
@@ -102,4 +113,37 @@ function circSetup(){
         circY: 100,
     }
     targetRem.push(circ);
+}
+
+function crash(){
+    for(e = 0; e < 5; e++){
+        if(circReset.b = true){
+            a = a - 3000;
+        }
+    }   
+}
+function victory(){
+    stroke("white");
+    fill("white");
+    text("ENEMY DEFEATED", 300, 300);
+}
+
+function scrollingBackground(){
+    image(asteroidField, 0, m);
+    image(asteroidField, 0, n);
+    image(asteroidField, 0, o);
+    for(r = 0; r < 5; r++){
+        m = m + 1;
+        n = n + 1;
+        o = o + 1;
+    }
+    if(m >= 600){
+        m = 0;
+    }
+    if(n >= 0){
+        n = -600;
+    }
+    if(o >= -600){
+        o = -1200;
+    }
 }
