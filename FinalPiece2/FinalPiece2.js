@@ -18,7 +18,6 @@ var m = 0;
 var n = -600;
 var o = -1200;
 
-
 function preLoad(){
     ship = loadImage('images/pixil-frame-0 (2).png');
     evilship = loadImage('evilship.png');
@@ -26,14 +25,11 @@ function preLoad(){
     asteroidField = loadImage('asteroid.png');
 }
 
-
-
 function setup() {
     preLoad();
     noStroke();
     circSetup();
     createCanvas(600, 600);
-
 }
 
 function draw() {
@@ -44,8 +40,8 @@ function draw() {
     ellipse(targetRem[0].circX, targetRem[0].circY, 0);
     tank();
     bullet();
-    //crash();
     image(evilship, targetRem[0].circX-67, targetRem[0].circY-a, evilship.width/2.2, evilship.height/2.2);
+
 }
 
 function tank(){
@@ -69,12 +65,12 @@ function bullet(){
                 console.log("hit");
                 //a = 9000;
                 b = true;
+                explosion();
                 circSetup();
                 crash();
-                //victory();
+                victory();
                 
             }else{
-                //console.log("miss");
                 b = false;
             }
     }
@@ -84,7 +80,6 @@ function bullet(){
 function keyPressed(){
     var bulletStart = {
         speed: -5,
-        //bulletStart: 570,
         y: 570,
         x: x,
     }
@@ -97,14 +92,10 @@ function keyPressed(){
 
 function target(){
     fill("white");
-
-
     for(i = 0; i < 5; i++){
         if(bulletStat.x = circ.circX, bulletStat.y = circ.circY){
-            //console.log("hit");
         }
     }
-
 }
 
 function circSetup(){
@@ -125,6 +116,8 @@ function crash(){
 function victory(){
     stroke("white");
     fill("white");
+    textAlign(CENTER);
+    textSize(30);
     text("ENEMY DEFEATED", 300, 300);
 }
 
@@ -146,4 +139,8 @@ function scrollingBackground(){
     if(o >= -600){
         o = -1200;
     }
+}
+
+function explosion(){
+    image(explosionGreen, targetRem[0].circX-90, targetRem[0].circY-72, explosionGreen.width/1.5, explosionGreen.height/1.5);
 }
