@@ -1,3 +1,6 @@
+//Final Prototype by Joseph Eiles
+//All image assets were designed and created by myself
+
 var x = 300;
 var bulletLoc = [];
 var bulletTrav = [];
@@ -44,6 +47,7 @@ function draw() {
 
 }
 
+//Function for the flying jet, the left and right arrows change an x value that moves it left or right.
 function tank(){
     rectMode(CENTER);
     if(keyIsDown(LEFT_ARROW)){
@@ -56,6 +60,9 @@ function tank(){
     rect(x, 570, 0, 0);
 }
 
+//Function for the jet's projectile. Moves the projectile across the screen and determines through an if statement and
+//dist if there is collision between the projectile's coordinates and the evil ship's. When collision occurs the result
+//is then carried out by true/false values which are then stored into another array.
 function bullet(){
     var b = false;
     for(i = 1; i < bulletTrav.length; i++){
@@ -77,6 +84,7 @@ function bullet(){
     circReset.push(b);
 }
 
+//Function for tracking and storing the bullet's x coordinate into array when the key is pressed to fire a bullet.
 function keyPressed(){
     var bulletStart = {
         speed: -5,
@@ -98,6 +106,7 @@ function target(){
     }
 }
 
+//Sets up the variables for the evil ship's coordinates which are then stored into an array.
 function circSetup(){
     var circ = {
         circX: random(50, 550),
@@ -106,6 +115,7 @@ function circSetup(){
     targetRem.push(circ);
 }
 
+//Function to make the evil ship vanish when hit.
 function crash(){
     for(e = 0; e < 5; e++){
         if(circReset.b = true){
@@ -121,6 +131,7 @@ function victory(){
     text("ENEMY DEFEATED", 300, 300);
 }
 
+//Function for the moving background. The background is a .png file that scrolls down in a loop.
 function scrollingBackground(){
     image(asteroidField, 0, m);
     image(asteroidField, 0, n);
